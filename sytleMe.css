@@ -1,0 +1,73 @@
+#nameEnt{
+    margin: 100px;
+    margin-top: 20px;
+    text-align: center;
+    border: black solid 1px;
+    padding: 100px;
+    background-color: white;
+}
+
+.initQuizSelector{
+    margin: 20px;
+    text-align: center;
+    border: black solid 1px;
+    padding: 100px;
+    background-color: white;
+}
+
+#testArea{
+    border: 10px black solid;
+    margin: 20px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: white;
+    overflow: hidden;
+    position: relative;
+}
+
+#leaderBoard{
+
+    margin: 20px;
+    margin-bottom: 30px;
+    border: 2px black solid;
+}
+
+#currentFish{
+    width: 25%;
+    height: 25%;
+    float: left;
+    margin-right: 20px;
+}
+
+.whatKindOfFishIsThis{
+    float: right;
+    width: 70%;
+    margin-top: 20px;
+}
+
+.whatKindOfFishIsThis{
+    float: left;
+    margin-left:5px;
+    margin-right: 10px;
+}
+
+#VictoryMessage{
+    margin: 100px;
+    padding: 10px;
+    mso-border-shadow: yes;
+    border: black dotted 1px;
+    text-align: center;
+}
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.centered-image {
+    max-width: 50%;
+    max-height: 50%;
+    object-fit: contain;
+}
