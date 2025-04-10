@@ -1,0 +1,122 @@
+const quizData = {
+    javascript: {
+        id: "javascript",
+        title: "JavaScript Quiz",
+        description: "Test your knowledge of JavaScript programming language.",
+        questions: [
+            {
+                id: 1,
+                type: "text",
+                question: "What is the correct way to declare a variable in JavaScript?",
+                hint: "Use the keyword that was introduced in ES6",
+                correctAnswer: "let",
+                studyLink: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let"
+            },
+            {
+                id: 2,
+                type: "multiple-choice",
+                question: "Which of the following is NOT a JavaScript data type?",
+                options: ["String", "Boolean", "Integer", "Object"],
+                correctAnswer: "Integer"
+            },
+            {
+                id: 3,
+                type: "image-selection",
+                question: "Select the image that represents a JavaScript array method:",
+                imageOptions: [
+                    {
+                        id: "map",
+                        url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+                        alt: "Array.map()"
+                    },
+                    {
+                        id: "forEach",
+                        url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach",
+                        alt: "Array.forEach()"
+                    },
+                    {
+                        id: "filter",
+                        url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter",
+                        alt: "Array.filter()"
+                    }
+                ],
+                correctAnswer: "map"
+            },
+            {
+                id: 4,
+                type: "text",
+                question: "What does DOM stand for in JavaScript?",
+                hint: "It's a programming interface for HTML and XML documents",
+                correctAnswer: "Document Object Model",
+                studyLink: "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
+            },
+            {
+                id: 5,
+                type: "multiple-choice",
+                question: "Which event occurs when a user clicks on an HTML element?",
+                options: ["onchange", "onmouseover", "onclick", "onmouseout"],
+                correctAnswer: "onclick"
+            }
+        ]
+    },
+    python: {
+        id: "python",
+        title: "Python Quiz",
+        description: "Test your knowledge of Python programming language.",
+        questions: [
+            {
+                id: 1,
+                type: "text",
+                question: "What is the correct way to create a function in Python?",
+                hint: "Use the keyword that starts with 'd'",
+                correctAnswer: "def",
+                studyLink: "https://docs.python.org/3/tutorial/controlflow.html#defining-functions"
+            },
+            {
+                id: 2,
+                type: "multiple-choice",
+                question: "Which of the following is a Python data type?",
+                options: ["String", "Boolean", "Integer", "All of the above"],
+                correctAnswer: "All of the above"
+            },
+            {
+                id: 3,
+                type: "image-selection",
+                question: "Select the image that represents a Python list comprehension:",
+                imageOptions: [
+                    {
+                        id: "list-comp",
+                        url: "https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions",
+                        alt: "List Comprehension"
+                    },
+                    {
+                        id: "for-loop",
+                        url: "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
+                        alt: "For Loop"
+                    },
+                    {
+                        id: "if-statement",
+                        url: "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
+                        alt: "If Statement"
+                    }
+                ],
+                correctAnswer: "list-comp"
+            },
+            {
+                id: 4,
+                type: "text",
+                question: "What is the name of Python's package manager?",
+                hint: "It's a recursive acronym",
+                correctAnswer: "pip",
+                studyLink: "https://pip.pypa.io/en/stable/"
+            },
+            {
+                id: 5,
+                type: "multiple-choice",
+                question: "Which of the following is NOT a Python framework?",
+                options: ["Django", "Flask", "Express", "Pyramid"],
+                correctAnswer: "Express"
+            }
+        ]
+    }
+};
