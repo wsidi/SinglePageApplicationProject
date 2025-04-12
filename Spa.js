@@ -1,46 +1,347 @@
-document.addEventListener('DOMContentLoaded', () => {
-    let totalQuestion = 5;
-    let questionsRight = 0;
-    let questionsWrong = 0;
-    
-    // Initialize the leaderboard
-    document.getElementById("TotalQuestions").innerHTML = `Total Questions: ${totalQuestion}`;
-    document.getElementById("QuestionsWrong").innerHTML = `Questions Wrong: ${questionsWrong}`;
-    document.getElementById("QuestionsRight").innerHTML = `Questions Right: ${questionsRight}`;
-    
-    // Get the form element
-    const form = document.querySelector('form.whatKindOfFishIsThis');
-    
-    // Add submit event listener to the form
-    form.addEventListener('submit', (event) => {
-        // Prevent the form from submitting and reloading the page
-        event.preventDefault();
+let userName = "";
+let currentQuiz = null;
+let currentQuestionIndex = 0;
+let totalQuestions = 5;
+let questionsRight = 0;
+let questionsWrong = 0;
+
+
+const API_BASE_URL = "https://my-json-server.typicode.com/wsidi/SinglePageApplicationProject";
+
+
+async function fetchQuizList() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/quizzes`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("Fetched quiz list:", data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching quiz list:', error);
+        return [];
+    }
+}
+
+async function fetchQuizById(quizId) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/quizzes/${quizId}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const quiz = await response.json();
+        console.log("Fetched quiz:", quiz);
+        return quiz;
+    } catch (error) {
+        console.error(`Error fetching quiz ${quizId}:`, error);
+        return null;
+    }
+}
+
+async function fetchQuestionById(quizId, questionId) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/questions`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("Fetched questions:", data);
         
-        // Get the answer from the input box
-        const answer = document.getElementById("answerBox").value;
-        
-        // Check if the answer is correct
-        if(answer === "Atlantic Sturgeon"){
-            questionsRight++;
-        } else {
-            questionsWrong++;
+        if (!data[quizId]) {
+            throw new Error(`Questions for quiz '${quizId}' not found in database`);
         }
         
-        // Update the leaderboard display
-        document.getElementById("QuestionsWrong").innerHTML = `Questions Wrong: ${questionsWrong}`;
-        document.getElementById("QuestionsRight").innerHTML = `Questions Right: ${questionsRight}`;
+        const question = data[quizId].find(q => q.id === questionId);
+        if (!question) {
+            throw new Error(`Question with ID ${questionId} not found in quiz '${quizId}'`);
+        }
         
-        // Clear the input box for the next question
-        document.getElementById("answerBox").value = "";
-    });
+        console.log("Found question:", question);
+        return question;
+    } catch (error) {
+        console.error(`Error fetching question ${questionId}:`, error);
+        return null;
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Initializing quiz application...');
+    showNameEntry();
 });
 
 
-var render_view = (view_id, model_index)=>{
-    console.log("Rendering View");
-    var source = document.querySelector(view_id).innerHTML;
-    var template = Handlebars.compile(source)
-    var html = template(model[model_index]);
+function showNameEntry() {
+    const mainContent = document.getElementById('main-content');
+    if (!mainContent) {
+        console.error('Main content element not found');
+        return;
+    }
 
-    document.querySelector("#currentSpace").innerHTML
+    const template = Handlebars.compile(document.getElementById('name-entry-template').innerHTML);
+    const html = template({});
+    mainContent.innerHTML = html;
+
+    const nameForm = document.getElementById('name-form');
+    if (nameForm) {
+        nameForm.addEventListener('submit', handleNameSubmit);
+    } else {
+        console.error('Name form not found');
+    }
+}
+
+
+function handleNameSubmit(event) {
+    event.preventDefault();
+    userName = document.getElementById('user-name').value.trim();
+    if (userName) {
+        showQuizSelection();
+    }
+}
+
+
+async function showQuizSelection() {
+    const mainContent = document.getElementById('main-content');
+    if (!mainContent) {
+        console.error('Main content element not found');
+        return;
+    }
+    
+    try {
+        const quizzes = await fetchQuizList();
+        const template = Handlebars.compile(document.getElementById('quiz-selection-template').innerHTML);
+        const html = template({ userName, quizzes });
+        mainContent.innerHTML = html;
+        
+        
+    } catch (error) {
+        console.error('Error showing quiz selection:', error);
+        mainContent.innerHTML = '<div class="alert alert-danger">Error loading quizzes. Please try again later.</div>';
+    }
+}
+
+
+async function startQuiz(quizId) {
+    try {
+        currentQuiz = await fetchQuizById(quizId);
+        if (!currentQuiz) {
+            console.error('Failed to load quiz');
+            return;
+        }
+        
+        currentQuestionIndex = 0;
+        questionsRight = 0;
+        questionsWrong = 0;
+        showQuestion();
+    } catch (error) {
+        console.error('Error starting quiz:', error);
+    }
+}
+
+
+async function showQuestion() {
+    const mainContent = document.getElementById('main-content');
+    if (!mainContent) {
+        console.error('Main content element not found');
+        return;
+    }
+    
+    try {
+        const question = await fetchQuestionById(currentQuiz.id, currentQuestionIndex + 1);
+        if (!question) {
+            console.error('Failed to load question');
+            mainContent.innerHTML = '<div class="alert alert-danger">Error loading question. Please try again later.</div>';
+            return;
+        }
+        
+        let templateId = '';
+        switch (question.type) {
+            case 'text':
+                templateId = 'text-response-template';
+                break;
+            case 'multiple-choice':
+                templateId = 'multiple-choice-template';
+                break;
+            case 'image-selection':
+                templateId = 'image-selection-template';
+                break;
+            default:
+                console.error('Unknown question type:', question.type);
+                mainContent.innerHTML = '<div class="alert alert-danger">Unknown question type. Please try again later.</div>';
+                return;
+        }
+        
+        const templateElement = document.getElementById(templateId);
+        if (!templateElement) {
+            console.error(`Template ${templateId} not found`);
+            mainContent.innerHTML = '<div class="alert alert-danger">Error loading template. Please try again later.</div>';
+            return;
+        }
+        
+        const template = Handlebars.compile(templateElement.innerHTML);
+        const html = template({
+            question: question.question,
+            hint: question.hint || '',
+            options: question.options || [],
+            imageOptions: question.imageOptions || [],
+            totalQuestions: totalQuestions,
+            questionsRight: questionsRight,
+            questionsWrong: questionsWrong
+        });
+        
+        mainContent.innerHTML = html;
+        
+        if (question.type === 'text') {
+            const answerForm = document.querySelector('.answer-form');
+            if (answerForm) {
+                answerForm.addEventListener('submit', handleTextAnswer);
+            }
+        } else if (question.type === 'multiple-choice') {
+            document.querySelectorAll('.option-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const answer = event.target.getAttribute('data-option');
+                    handleMultipleChoice(answer);
+                });
+            });
+        } else if (question.type === 'image-selection') {
+            document.querySelectorAll('.image-select-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const answer = event.target.getAttribute('data-option');
+                    handleImageSelection(answer);
+                });
+            });
+        }
+    } catch (error) {
+        console.error('Error showing question:', error);
+        mainContent.innerHTML = '<div class="alert alert-danger">Error loading question. Please try again later.</div>';
+    }
+}
+
+
+function handleTextAnswer(event) {
+    event.preventDefault();
+    const userAnswer = document.getElementById('answerBox').value.trim().toLowerCase();
+    
+    fetchQuestionById(currentQuiz.id, currentQuestionIndex + 1)
+        .then(question => {
+            if (!question) {
+                console.error('Failed to load question for answer validation');
+                return;
+            }
+            
+            const correctAnswer = question.correctAnswer.toLowerCase();
+            
+            if (userAnswer === correctAnswer) {
+                questionsRight++;
+                showCorrectAnswer();
+            } else {
+                questionsWrong++;
+                showWrongAnswer(question);
+            }
+        })
+        .catch(error => {
+            console.error('Error validating answer:', error);
+        });
+}
+
+
+function handleMultipleChoice(answer) {
+    fetchQuestionById(currentQuiz.id, currentQuestionIndex + 1)
+        .then(question => {
+            if (!question) {
+                console.error('Failed to load question for answer validation');
+                return;
+            }
+            
+            const correctAnswer = question.correctAnswer;
+            
+            if (answer === correctAnswer) {
+                questionsRight++;
+                showCorrectAnswer();
+            } else {
+                questionsWrong++;
+                showWrongAnswer(question);
+            }
+        })
+        .catch(error => {
+            console.error('Error validating answer:', error);
+        });
+}
+
+
+function handleImageSelection(answer) {
+    fetchQuestionById(currentQuiz.id, currentQuestionIndex + 1)
+        .then(question => {
+            if (!question) {
+                console.error('Failed to load question for answer validation');
+                return;
+            }
+            
+            const correctAnswer = question.correctAnswer;
+            
+            if (answer === correctAnswer) {
+                questionsRight++;
+                showCorrectAnswer();
+            } else {
+                questionsWrong++;
+                showWrongAnswer(question);
+            }
+        })
+        .catch(error => {
+            console.error('Error validating answer:', error);
+        });
+}
+
+
+function showCorrectAnswer() {
+    const template = Handlebars.compile(document.getElementById('correct-answer-template').innerHTML);
+    const html = template({});
+    document.getElementById('main-content').innerHTML = html;
+    
+    setTimeout(() => {
+        nextQuestion();
+    }, 1000);
+}
+
+
+function showWrongAnswer(question) {
+    const template = Handlebars.compile(document.getElementById('wrong-answer-template').innerHTML);
+    const html = template({
+        correctAnswer: question.correctAnswer,
+        studyLink: question.studyLink || '#'
+    });
+    document.getElementById('main-content').innerHTML = html;
+    
+    
+}
+
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < totalQuestions) {
+        showQuestion();
+    } else {
+        showResults();
+    }
+}
+
+
+function showResults() {
+    const percentage = (questionsRight / totalQuestions) * 100;
+    const passed = percentage >= 80;
+    
+    const template = Handlebars.compile(document.getElementById('results-template').innerHTML);
+    const html = template({
+        userName: userName,
+        questionsRight: questionsRight,
+        totalQuestions: totalQuestions,
+        percentage: percentage.toFixed(1),
+        resultTitle: passed ? "Congratulations! You passed the quiz!" : "Sorry, you failed the quiz.",
+        currentQuiz: currentQuiz 
+    });
+    
+    document.getElementById('main-content').innerHTML = html;
+    
+    
 }
