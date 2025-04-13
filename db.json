@@ -31,25 +31,25 @@
       {
         "id": 3,
         "type": "image-selection",
-        "question": "Select the image that represents a JavaScript array method:",
+        "question": "Select the correct image for the JavaScript Logo:",
         "imageOptions": [
           {
-            "id": "map",
-            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
-            "alt": "Array.map()"
+            "id": "jsLogo",
+            "url": "https://seeklogo.com/images/J/javascript-logo-8892AEFCAC-seeklogo.com.png",
+            "alt": "jsLogo"
           },
           {
-            "id": "forEach",
-            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach",
-            "alt": "Array.forEach()"
+            "id": "tsLogo",
+            "url": "https://w7.pngwing.com/pngs/1008/952/png-transparent-typescript-hd-logo.png",
+            "alt": "tsLogo"
           },
           {
-            "id": "filter",
-            "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter",
-            "alt": "Array.filter()"
+            "id": "c++Logo",
+            "url": "https://th.bing.com/th/id/OIP.VsbYEFeRPmyMhQZuONAWQwHaIr?rs=1&pid=ImgDetMain",
+            "alt": "c++Logo"
           }
         ],
-        "correctAnswer": "map"
+        "correctAnswer": "jsLogo"
       },
       {
         "id": 4,
@@ -86,25 +86,25 @@
       {
         "id": 3,
         "type": "image-selection",
-        "question": "Select the image that represents a Python list comprehension:",
+        "question": "Select the image that represents the Python Logo:",
         "imageOptions": [
           {
-            "id": "list-comp",
-            "url": "https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions",
-            "alt": "List Comprehension"
+            "id": "pyLogo",
+            "url": "https://th.bing.com/th/id/OIP.NcoWxTfDKNryzaO2QiYrOQHaHa?rs=1&pid=ImgDetMain",
+            "alt": "Python logo"
           },
           {
-            "id": "for-loop",
-            "url": "https://docs.python.org/3/tutorial/controlflow.html#for-statements",
-            "alt": "For Loop"
+            "id": "snake",
+            "url": "https://www.thesprucepets.com/thmb/mK1BYEUqggb1d1QKi2fuKhEeyf4=/2121x1413/filters:fill(auto,1)/GettyImages-531906282-5eb4b86361a94e8ebb72e26dbba44aa4.jpg",
+            "alt": "Actual Python lol"
           },
           {
-            "id": "if-statement",
-            "url": "https://docs.python.org/3/tutorial/controlflow.html#if-statements",
-            "alt": "If Statement"
+            "id": "cSharplogo",
+            "url": "https://th.bing.com/th/id/OIP.vUnjMyWKG-t8IBot13xNXgHaGd?rs=1&pid=ImgDetMain",
+            "alt": "cSharplogo"
           }
         ],
-        "correctAnswer": "list-comp"
+        "correctAnswer": "pyLogo"
       },
       {
         "id": 4,
