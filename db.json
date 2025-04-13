@@ -21,9 +21,8 @@
         "id": 1,
         "type": "text",
         "question": "What is the correct way to declare a variable in JavaScript?",
-        "hint": "Use the one that begins with the letter l.",
-        "options": ["let", "var", "const", "variable"],
-        "correctAnswer": "let",
+        "options": ["The answer is let", "The answer is learn", "The asnwer is const"],
+        "correctAnswer": "The answer is let",
         "studyLink": "https://www.w3schools.com/js/js_variables.asp"
       },
       {
@@ -60,9 +59,8 @@
       },
       {
         "id": 4,
-        "type": "text",
+        "type": "multiple-choice",
         "question": "What does DOM stand for in JavaScript?",
-        "hint": "It rhymes with Document Dobjet Dodel.",
         "options": ["Document Object Model", "Data Object Model", "Document Oriented Model", "Data Oriented Model"],
         "correctAnswer": "Document Object Model",
         "studyLink": "https://www.w3schools.com/js/js_htmldom.asp"
@@ -81,9 +79,8 @@
         "id": 1,
         "type": "text",
         "question": "What is the correct way to create a function in Python?",
-        "hint": "Use the keyword that starts with 'd.'",
-        "options": ["def", "function", "func", "define"],
-        "correctAnswer": "def",
+        "options": ["The answer is def", "The answer is func", "The answer is define"],
+        "correctAnswer": "The answer is def",
         "studyLink": "https://www.w3schools.com/python/python_functions.asp"
       },
       {
@@ -122,9 +119,8 @@
         "id": 4,
         "type": "text",
         "question": "What is the name of Python's package manager?",
-        "hint": "It rhymes with hip.",
-        "options": ["pip", "npm", "yarn", "maven"],
-        "correctAnswer": "pip",
+        "options": ["The answer is pip", "The answer is npm", "I don't know"],
+        "correctAnswer": "The answer is pip",
         "studyLink": "https://www.w3schools.com/python/python_pip.asp"
       },
       {
