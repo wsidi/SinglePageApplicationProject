@@ -55,7 +55,7 @@
         "id": 4,
         "type": "text",
         "question": "What does DOM stand for in JavaScript?",
-        "hint": "It's a programming interface for HTML and XML documents",
+        "hint": "It's a programming interface for website development.",
         "correctAnswer": "Document Object Model",
         "studyLink": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
       },
