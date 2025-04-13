@@ -4,10 +4,12 @@ let currentQuestionIndex = 0;
 let totalQuestions = 5;
 let questionsRight = 0;
 let questionsWrong = 0;
-
+let score = 0;
+let playerName = '';
+let elapsedTime = 0;
+let timerInterval = null;
 
 const API_BASE_URL = "https://my-json-server.typicode.com/wsidi/SinglePageApplicationProject";
-
 
 async function fetchQuizList() {
     try {
@@ -65,12 +67,10 @@ async function fetchQuestionById(quizId, questionId) {
     }
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Initializing quiz application...');
     showNameEntry();
 });
-
 
 function showNameEntry() {
     const mainContent = document.getElementById('main-content');
@@ -78,11 +78,11 @@ function showNameEntry() {
         console.error('Main content element not found');
         return;
     }
-
+    
     const template = Handlebars.compile(document.getElementById('name-entry-template').innerHTML);
     const html = template({});
     mainContent.innerHTML = html;
-
+    
     const nameForm = document.getElementById('name-form');
     if (nameForm) {
         nameForm.addEventListener('submit', handleNameSubmit);
@@ -91,7 +91,6 @@ function showNameEntry() {
     }
 }
 
-
 function handleNameSubmit(event) {
     event.preventDefault();
     userName = document.getElementById('user-name').value.trim();
@@ -99,7 +98,6 @@ function handleNameSubmit(event) {
         showQuizSelection();
     }
 }
-
 
 async function showQuizSelection() {
     const mainContent = document.getElementById('main-content');
@@ -114,13 +112,17 @@ async function showQuizSelection() {
         const html = template({ userName, quizzes });
         mainContent.innerHTML = html;
         
-        
+        document.querySelectorAll('[data-quiz]').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const quizId = event.target.getAttribute('data-quiz');
+                startQuiz(quizId);
+            });
+        });
     } catch (error) {
         console.error('Error showing quiz selection:', error);
         mainContent.innerHTML = '<div class="alert alert-danger">Error loading quizzes. Please try again later.</div>';
     }
 }
-
 
 async function startQuiz(quizId) {
     try {
@@ -133,12 +135,12 @@ async function startQuiz(quizId) {
         currentQuestionIndex = 0;
         questionsRight = 0;
         questionsWrong = 0;
+        
         showQuestion();
     } catch (error) {
         console.error('Error starting quiz:', error);
     }
 }
-
 
 async function showQuestion() {
     const mainContent = document.getElementById('main-content');
@@ -205,8 +207,8 @@ async function showQuestion() {
                 });
             });
         } else if (question.type === 'image-selection') {
-            document.querySelectorAll('.image-select-btn').forEach(button => {
-                button.addEventListener('click', (event) => {
+            document.querySelectorAll('.option-image').forEach(image => {
+                image.addEventListener('click', (event) => {
                     const answer = event.target.getAttribute('data-option');
                     handleImageSelection(answer);
                 });
@@ -217,7 +219,6 @@ async function showQuestion() {
         mainContent.innerHTML = '<div class="alert alert-danger">Error loading question. Please try again later.</div>';
     }
 }
-
 
 function handleTextAnswer(event) {
     event.preventDefault();
@@ -245,7 +246,6 @@ function handleTextAnswer(event) {
         });
 }
 
-
 function handleMultipleChoice(answer) {
     fetchQuestionById(currentQuiz.id, currentQuestionIndex + 1)
         .then(question => {
@@ -268,7 +268,6 @@ function handleMultipleChoice(answer) {
             console.error('Error validating answer:', error);
         });
 }
-
 
 function handleImageSelection(answer) {
     fetchQuestionById(currentQuiz.id, currentQuestionIndex + 1)
@@ -293,19 +292,22 @@ function handleImageSelection(answer) {
         });
 }
 
-
 function showCorrectAnswer() {
+    document.body.classList.add('correct-answer');
+    
     const template = Handlebars.compile(document.getElementById('correct-answer-template').innerHTML);
     const html = template({});
     document.getElementById('main-content').innerHTML = html;
     
     setTimeout(() => {
+        document.body.classList.remove('correct-answer');
         nextQuestion();
     }, 1000);
 }
 
-
 function showWrongAnswer(question) {
+    document.body.classList.add('wrong-answer');
+    
     const template = Handlebars.compile(document.getElementById('wrong-answer-template').innerHTML);
     const html = template({
         correctAnswer: question.correctAnswer,
@@ -313,9 +315,11 @@ function showWrongAnswer(question) {
     });
     document.getElementById('main-content').innerHTML = html;
     
-    
+    document.getElementById('continue-btn').addEventListener('click', () => {
+        document.body.classList.remove('wrong-answer');
+        nextQuestion();
+    });
 }
-
 
 function nextQuestion() {
     currentQuestionIndex++;
@@ -325,7 +329,6 @@ function nextQuestion() {
         showResults();
     }
 }
-
 
 function showResults() {
     const percentage = (questionsRight / totalQuestions) * 100;
@@ -337,11 +340,18 @@ function showResults() {
         questionsRight: questionsRight,
         totalQuestions: totalQuestions,
         percentage: percentage.toFixed(1),
-        resultTitle: passed ? "Congratulations! You passed the quiz!" : "Sorry, you failed the quiz.",
-        currentQuiz: currentQuiz 
+        resultTitle: passed ? "Congratulations! You passed the quiz!" : "Sorry, you failed the quiz."
     });
     
     document.getElementById('main-content').innerHTML = html;
     
+    document.getElementById('restart-btn').addEventListener('click', () => {
+        startQuiz(currentQuiz.id);
+    });
     
+    document.getElementById('menu-btn').addEventListener('click', showQuizSelection);
 }
+
+Handlebars.registerHelper('onClick', function(action, param) {
+    return `onclick="${action}('${param}')"`;
+});
