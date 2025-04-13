@@ -9,36 +9,36 @@
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 </head>
 <body>
-<div class="container">
+    <div class="container">
 
-    <div id="main-content">
+        <div id="main-content">
 
-    </div>
-</div>
-
-
-<script id="name-entry-template" type="text/x-handlebars-template">
-    <div class="name-entry-container">
-        <h2 class="text-center mb-4">Welcome to the Programming Quiz App</h2>
-        <div class="card p-4 mx-auto" style="max-width: 500px;">
-            <h3 class="text-center mb-3">Please Enter Your Name</h3>
-            <form id="name-form">
-                <div class="mb-3">
-                    <input type="text" class="form-control" id="user-name" placeholder="Your Name" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Continue</button>
-            </form>
         </div>
     </div>
-</script>
 
 
-<script id="quiz-selection-template" type="text/x-handlebars-template">
-    <div class="quiz-selection-container">
-        <h2 class="text-center mb-4">Hello, {{userName}}!</h2>
-        <h3 class="text-center mb-4">Select a Quiz</h3>
-        <div class="row justify-content-center">
-            {{#each quizzes}}
+    <script id="name-entry-template" type="text/x-handlebars-template">
+        <div class="name-entry-container">
+            <h2 class="text-center mb-4">Welcome to the Programming Quiz App</h2>
+            <div class="card p-4 mx-auto" style="max-width: 500px;">
+                <h3 class="text-center mb-3">Please Enter Your Name</h3>
+                <form id="name-form">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="user-name" placeholder="Your Name" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Continue</button>
+                </form>
+            </div>
+        </div>
+    </script>
+
+
+    <script id="quiz-selection-template" type="text/x-handlebars-template">
+        <div class="quiz-selection-container">
+            <h2 class="text-center mb-4">Hello, {{userName}}!</h2>
+            <h3 class="text-center mb-4">Select a Quiz</h3>
+            <div class="row justify-content-center">
+                {{#each quizzes}}
                 <div class="col-md-6 mb-4">
                     <div class="card h-100">
                         <div class="card-body d-flex flex-column">
@@ -51,144 +51,146 @@
                         </div>
                     </div>
                 </div>
-            {{/each}}
-        </div>
-    </div>
-</script>
-
-
-<script id="text-response-template" type="text/x-handlebars-template">
-    <div class="quiz-container">
-        <div id="leaderBoard" class="row mb-4">
-            <div id="TotalQuestions" class="col leaderboard-item">
-                Total Questions: {{totalQuestions}}
-            </div>
-            <div id="QuestionsRight" class="col leaderboard-item">
-                Questions Right: {{questionsRight}}
-            </div>
-            <div id="QuestionsWrong" class="col leaderboard-item">
-                Questions Wrong: {{questionsWrong}}
-            </div>
-        </div>
-
-        <div id="testArea">
-            <h3 class="question-text">{{question}}</h3>
-            
-            <div class="options-container">
-                {{#each options}}
-                    <button class="btn btn-outline-primary option-btn mb-2 w-100" data-option="{{this}}">{{this}}</button>
                 {{/each}}
             </div>
         </div>
-    </div>
-</script>
+    </script>
 
 
-<script id="multiple-choice-template" type="text/x-handlebars-template">
-    <div class="quiz-container">
-
-        <div id="leaderBoard" class="row mb-4">
-            <div id="TotalQuestions" class="col leaderboard-item">
-                Total Questions: {{totalQuestions}}
+    <script id="text-response-template" type="text/x-handlebars-template">
+        <div class="quiz-container">
+            <div id="leaderBoard" class="row mb-4">
+                <div id="TotalQuestions" class="col leaderboard-item">
+                    Total Questions: {{totalQuestions}}
+                </div>
+                <div id="QuestionsRight" class="col leaderboard-item">
+                    Questions Right: {{questionsRight}}
+                </div>
+                <div id="QuestionsWrong" class="col leaderboard-item">
+                    Questions Wrong: {{questionsWrong}}
+                </div>
             </div>
-            <div id="QuestionsRight" class="col leaderboard-item">
-                Questions Right: {{questionsRight}}
-            </div>
-            <div id="QuestionsWrong" class="col leaderboard-item">
-                Questions Wrong: {{questionsWrong}}
-            </div>
-        </div>
 
-
-        <div id="testArea">
-            <h3 class="question-text">{{question}}</h3>
-            <div class="options-container">
-                {{#each options}}
-                    <button class="btn btn-outline-primary option-btn mb-2 w-100" data-option="{{this}}">{{this}}</button>
-                {{/each}}
-            </div>
-        </div>
-    </div>
-</script>
-
-
-<script id="image-selection-template" type="text/x-handlebars-template">
-    <div class="quiz-container">
-
-        <div id="leaderBoard" class="row mb-4">
-            <div id="TotalQuestions" class="col leaderboard-item">
-                Total Questions: {{totalQuestions}}
-            </div>
-            <div id="QuestionsRight" class="col leaderboard-item">
-                Questions Right: {{questionsRight}}
-            </div>
-            <div id="QuestionsWrong" class="col leaderboard-item">
-                Questions Wrong: {{questionsWrong}}
-            </div>
-        </div>
-
-
-        <div id="testArea">
-            <h3 class="question-text">{{question}}</h3>
-            {{#if hint}}
+            <div id="testArea">
+                <h3 class="question-text">{{question}}</h3>
+                {{#if hint}}
                 <p class="hint-text">{{hint}}</p>
-            {{/if}}
-            <div class="image-options-container">
-                {{#each imageOptions}}
+                {{/if}}
+                <div class="options-container">
+                    {{#each options}}
+                    <button class="btn btn-outline-primary option-btn mb-2 w-100" data-option="{{this}}">{{this}}</button>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </script>
+
+
+    <script id="multiple-choice-template" type="text/x-handlebars-template">
+        <div class="quiz-container">
+
+            <div id="leaderBoard" class="row mb-4">
+                <div id="TotalQuestions" class="col leaderboard-item">
+                    Total Questions: {{totalQuestions}}
+                </div>
+                <div id="QuestionsRight" class="col leaderboard-item">
+                    Questions Right: {{questionsRight}}
+                </div>
+                <div id="QuestionsWrong" class="col leaderboard-item">
+                    Questions Wrong: {{questionsWrong}}
+                </div>
+            </div>
+
+
+            <div id="testArea">
+                <h3 class="question-text">{{question}}</h3>
+                <div class="options-container">
+                    {{#each options}}
+                    <button class="btn btn-outline-primary option-btn mb-2 w-100" data-option="{{this}}">{{this}}</button>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </script>
+
+
+    <script id="image-selection-template" type="text/x-handlebars-template">
+        <div class="quiz-container">
+
+            <div id="leaderBoard" class="row mb-4">
+                <div id="TotalQuestions" class="col leaderboard-item">
+                    Total Questions: {{totalQuestions}}
+                </div>
+                <div id="QuestionsRight" class="col leaderboard-item">
+                    Questions Right: {{questionsRight}}
+                </div>
+                <div id="QuestionsWrong" class="col leaderboard-item">
+                    Questions Wrong: {{questionsWrong}}
+                </div>
+            </div>
+
+
+            <div id="testArea">
+                <h3 class="question-text">{{question}}</h3>
+                {{#if hint}}
+                <p class="hint-text">{{hint}}</p>
+                {{/if}}
+                <div class="image-options-container">
+                    {{#each imageOptions}}
                     <div class="image-option">
                         <img src="{{url}}" alt="{{alt}}" class="option-image" data-option="{{id}}" style="cursor: pointer;">
                     </div>
-                {{/each}}
+                    {{/each}}
+                </div>
             </div>
         </div>
-    </div>
-</script>
+    </script>
 
-<!-- Correct Answer Template -->
-<script id="correct-answer-template" type="text/x-handlebars-template">
+    <!-- Correct Answer Template -->
+    <script id="correct-answer-template" type="text/x-handlebars-template">
 
-    <div class="correct-answer-container">
-        <div class="card p-4 mx-auto" style="max-width: 600px;">
-            <h2 class="text-center text-success mb-4">Correct! Well done!</h2>
-            <p class="text-center mb-4">Great job! You've answered this question correctly.</p>
-            <div class="image-container">
-                <img src="https://img.freepik.com/premium-photo/young-handsome-caucasian-man-isolated-blue-background-holding-check-icon-celebrating-victory_1368-255900.jpg" alt="Correct!" class="centered-image">
+        <div class="correct-answer-container">
+            <div class="card p-4 mx-auto" style="max-width: 600px;">
+                <h2 class="text-center text-success mb-4">Correct! Well done!</h2>
+                <p class="text-center mb-4">Great job! You've answered this question correctly.</p>
+                <div class="image-container">
+                    <img src="https://img.freepik.com/premium-photo/young-handsome-caucasian-man-isolated-blue-background-holding-check-icon-celebrating-victory_1368-255900.jpg" alt="Correct!" class="centered-image">
+                </div>
             </div>
         </div>
-    </div>
 
-</script>
+    </script>
 
-<!-- Wrong Answer Template -->
-<script id="wrong-answer-template" type="text/x-handlebars-template">
-    <div class="wrong-answer-container">
-        <div class="card p-4 mx-auto" style="max-width: 600px;">
-            <h2 class="text-center text-danger mb-4">Incorrect!</h2>
-            <p class="text-center mb-3">The correct answer was: <strong>{{correctAnswer}}</strong></p>
-            <p class="text-center mb-4">To learn more about this topic, visit: <a href="{{studyLink}}" target="_blank">{{studyLink}}</a></p>
-            <div class="text-center">
-                <button class="btn btn-primary" id="continue-btn">Got it</button>
+    <!-- Wrong Answer Template -->
+    <script id="wrong-answer-template" type="text/x-handlebars-template">
+        <div class="wrong-answer-container">
+            <div class="card p-4 mx-auto" style="max-width: 600px;">
+                <h2 class="text-center text-danger mb-4">Incorrect!</h2>
+                <p class="text-center mb-3">The correct answer was: <strong>{{correctAnswer}}</strong></p>
+                <p class="text-center mb-4">To learn more about this topic, visit: <a href="{{studyLink}}" target="_blank">{{studyLink}}</a></p>
+                <div class="text-center">
+                    <button class="btn btn-primary" id="continue-btn">Got it</button>
+                </div>
             </div>
         </div>
-    </div>
-</script>
+    </script>
 
 
-<script id="results-template" type="text/x-handlebars-template">
-    <div class="results-container">
-        <div class="card p-4 mx-auto" style="max-width: 600px;">
-            <h2 class="text-center mb-4">{{resultTitle}}</h2>
-            <p class="text-center mb-3">Hello, {{userName}}!</p>
-            <p class="text-center mb-4">You got {{questionsRight}} out of {{totalQuestions}} questions correct ({{percentage}}%)</p>
-            <div class="d-flex justify-content-center gap-3">
-                <button class="btn btn-primary" id="restart-btn">Restart Quiz</button>
-                <button class="btn btn-secondary" id="menu-btn">Return to Menu</button>
+    <script id="results-template" type="text/x-handlebars-template">
+        <div class="results-container">
+            <div class="card p-4 mx-auto" style="max-width: 600px;">
+                <h2 class="text-center mb-4">{{resultTitle}}</h2>
+                <p class="text-center mb-3">Hello, {{userName}}!</p>
+                <p class="text-center mb-4">You got {{questionsRight}} out of {{totalQuestions}} questions correct ({{percentage}}%)</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <button class="btn btn-primary" id="restart-btn">Restart Quiz</button>
+                    <button class="btn btn-secondary" id="menu-btn">Return to Menu</button>
+                </div>
             </div>
         </div>
-    </div>
-</script>
+    </script>
 
 
-<script src="Spa.js"></script>
+    <script src="Spa.js"></script>
 </body>
 </html>
