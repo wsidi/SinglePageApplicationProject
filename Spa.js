@@ -49,16 +49,16 @@ async function fetchQuestionById(quizId, questionId) {
         }
         const data = await response.json();
         console.log("Fetched questions:", data);
-
+        
         if (!data[quizId]) {
             throw new Error(`Questions for quiz '${quizId}' not found in database`);
         }
-
+        
         const question = data[quizId].find(q => q.id === questionId);
         if (!question) {
             throw new Error(`Question with ID ${questionId} not found in quiz '${quizId}'`);
         }
-
+        
         console.log("Found question:", question);
         return question;
     } catch (error) {
@@ -78,11 +78,11 @@ function showNameEntry() {
         console.error('Main content element not found');
         return;
     }
-
+    
     const template = Handlebars.compile(document.getElementById('name-entry-template').innerHTML);
     const html = template({});
     mainContent.innerHTML = html;
-
+    
     const nameForm = document.getElementById('name-form');
     if (nameForm) {
         nameForm.addEventListener('submit', handleNameSubmit);
@@ -105,13 +105,13 @@ async function showQuizSelection() {
         console.error('Main content element not found');
         return;
     }
-
+    
     try {
         const quizzes = await fetchQuizList();
         const template = Handlebars.compile(document.getElementById('quiz-selection-template').innerHTML);
         const html = template({ userName, quizzes });
         mainContent.innerHTML = html;
-
+        
         document.querySelectorAll('[data-quiz]').forEach(button => {
             button.addEventListener('click', (event) => {
                 const quizId = event.target.getAttribute('data-quiz');
@@ -131,11 +131,11 @@ async function startQuiz(quizId) {
             console.error('Failed to load quiz');
             return;
         }
-
+        
         currentQuestionIndex = 0;
         questionsRight = 0;
         questionsWrong = 0;
-
+        
         showQuestion();
     } catch (error) {
         console.error('Error starting quiz:', error);
@@ -148,7 +148,7 @@ async function showQuestion() {
         console.error('Main content element not found');
         return;
     }
-
+    
     try {
         const question = await fetchQuestionById(currentQuiz.id, currentQuestionIndex + 1);
         if (!question) {
@@ -156,7 +156,7 @@ async function showQuestion() {
             mainContent.innerHTML = '<div class="alert alert-danger">Error loading question. Please try again later.</div>';
             return;
         }
-
+        
         let templateId = '';
         switch (question.type) {
             case 'text':
@@ -173,14 +173,14 @@ async function showQuestion() {
                 mainContent.innerHTML = '<div class="alert alert-danger">Unknown question type. Please try again later.</div>';
                 return;
         }
-
+        
         const templateElement = document.getElementById(templateId);
         if (!templateElement) {
             console.error(`Template ${templateId} not found`);
             mainContent.innerHTML = '<div class="alert alert-danger">Error loading template. Please try again later.</div>';
             return;
         }
-
+        
         const template = Handlebars.compile(templateElement.innerHTML);
         const html = template({
             question: question.question,
@@ -191,15 +191,10 @@ async function showQuestion() {
             questionsRight: questionsRight,
             questionsWrong: questionsWrong
         });
-
+        
         mainContent.innerHTML = html;
-
-        if (question.type === 'text') {
-            const answerForm = document.querySelector('.answer-form');
-            if (answerForm) {
-                answerForm.addEventListener('submit', handleTextAnswer);
-            }
-        } else if (question.type === 'multiple-choice') {
+        
+        if (question.type === 'text' || question.type === 'multiple-choice') {
             document.querySelectorAll('.option-btn').forEach(button => {
                 button.addEventListener('click', (event) => {
                     const answer = event.target.getAttribute('data-option');
@@ -220,32 +215,6 @@ async function showQuestion() {
     }
 }
 
-function handleTextAnswer(event) {
-    event.preventDefault();
-    const userAnswer = document.getElementById('answerBox').value.trim().toLowerCase();
-
-    fetchQuestionById(currentQuiz.id, currentQuestionIndex + 1)
-        .then(question => {
-            if (!question) {
-                console.error('Failed to load question for answer validation');
-                return;
-            }
-
-            const correctAnswer = question.correctAnswer.toLowerCase();
-
-            if (userAnswer === correctAnswer) {
-                questionsRight++;
-                showCorrectAnswer();
-            } else {
-                questionsWrong++;
-                showWrongAnswer(question);
-            }
-        })
-        .catch(error => {
-            console.error('Error validating answer:', error);
-        });
-}
-
 function handleMultipleChoice(answer) {
     fetchQuestionById(currentQuiz.id, currentQuestionIndex + 1)
         .then(question => {
@@ -253,9 +222,9 @@ function handleMultipleChoice(answer) {
                 console.error('Failed to load question for answer validation');
                 return;
             }
-
+            
             const correctAnswer = question.correctAnswer;
-
+            
             if (answer === correctAnswer) {
                 questionsRight++;
                 showCorrectAnswer();
@@ -276,9 +245,9 @@ function handleImageSelection(answer) {
                 console.error('Failed to load question for answer validation');
                 return;
             }
-
+            
             const correctAnswer = question.correctAnswer;
-
+            
             if (answer === correctAnswer) {
                 questionsRight++;
                 showCorrectAnswer();
@@ -294,11 +263,11 @@ function handleImageSelection(answer) {
 
 function showCorrectAnswer() {
     document.body.classList.add('correct-answer');
-
+    
     const template = Handlebars.compile(document.getElementById('correct-answer-template').innerHTML);
     const html = template({});
     document.getElementById('main-content').innerHTML = html;
-
+    
     setTimeout(() => {
         document.body.classList.remove('correct-answer');
         nextQuestion();
@@ -307,14 +276,14 @@ function showCorrectAnswer() {
 
 function showWrongAnswer(question) {
     document.body.classList.add('wrong-answer');
-
+    
     const template = Handlebars.compile(document.getElementById('wrong-answer-template').innerHTML);
     const html = template({
         correctAnswer: question.correctAnswer,
         studyLink: question.studyLink || '#'
     });
     document.getElementById('main-content').innerHTML = html;
-
+    
     document.getElementById('continue-btn').addEventListener('click', () => {
         document.body.classList.remove('wrong-answer');
         nextQuestion();
@@ -333,7 +302,7 @@ function nextQuestion() {
 function showResults() {
     const percentage = (questionsRight / totalQuestions) * 100;
     const passed = percentage >= 80;
-
+    
     const template = Handlebars.compile(document.getElementById('results-template').innerHTML);
     const html = template({
         userName: userName,
@@ -342,13 +311,13 @@ function showResults() {
         percentage: percentage.toFixed(1),
         resultTitle: passed ? "Congratulations! You passed the quiz!" : "Sorry, you failed the quiz."
     });
-
+    
     document.getElementById('main-content').innerHTML = html;
-
+    
     document.getElementById('restart-btn').addEventListener('click', () => {
         startQuiz(currentQuiz.id);
     });
-
+    
     document.getElementById('menu-btn').addEventListener('click', showQuizSelection);
 }
 
