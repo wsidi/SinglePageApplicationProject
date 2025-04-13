@@ -1,0 +1,281 @@
+body {
+    background-color: #f5f5f5;
+    font-family: 'Arial', sans-serif;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+#leaderBoard {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-item {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    border-right: 1px solid #eee;
+}
+
+.leaderboard-item:last-child {
+    border-right: none;
+}
+
+
+#testArea {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    position: relative;
+}
+
+.question-text {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.hint-text {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+
+.answer-form {
+    margin-top: 20px;
+}
+
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.option-btn {
+    text-align: left;
+    padding: 15px;
+    transition: none;
+}
+
+.option-btn:hover {
+    background-color: #e9ecef;
+    transform: none;
+}
+
+.option-btn.selected {
+    background-color: #4a6bdf;
+    color: white;
+}
+
+
+.image-options-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.image-option {
+    width: 200px;
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+.option-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.option-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #4a6bdf;
+}
+
+.image-select-btn {
+    width: 100%;
+}
+
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+    margin: 20px 0;
+    border: none;
+    outline: none;
+}
+
+.centered-image {
+    max-width: 300px;
+    max-height: 300px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: none;
+    transition: none;
+}
+
+.centered-image:hover {
+    transform: none;
+}
+
+
+.card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: none;
+}
+
+.card:hover {
+    transform: none;
+}
+
+
+.btn {
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #4a6bdf;
+    border-color: #4a6bdf;
+}
+
+.btn-primary:hover {
+    background-color: #3a5bc9;
+    border-color: #3a5bc9;
+}
+
+.btn-outline-primary {
+    color: #4a6bdf;
+    border-color: #4a6bdf;
+}
+
+.btn-outline-primary:hover {
+    background-color: #4a6bdf;
+    color: white;
+}
+
+
+.form-control {
+    border-radius: 4px;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.form-control:focus {
+    border-color: #4a6bdf;
+    box-shadow: 0 0 0 0.2rem rgba(74, 107, 223, 0.25);
+}
+
+
+.results-container {
+    text-align: center;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+
+.quiz-selection-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.quiz-logo {
+    max-width: 150px;
+    height: auto;
+    margin: 15px 0;
+}
+
+
+.name-entry-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+
+.correct-answer-container {
+    background-color: green;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.wrong-answer-container {
+    background-color: red;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+
+body.correct-answer {
+    background-color: green;
+}
+
+body.wrong-answer {
+    background-color: red;
+}
+
+
+@media (max-width: 768px) {
+    .image-options-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
+    
+    .image-option {
+        width: 45%;
+        max-width: 200px;
+        flex: 0 0 auto;
+    }
+
+    .leaderboard-item {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding: 10px 0;
+    }
+
+    .leaderboard-item:last-child {
+        border-bottom: none;
+    }
+    
+    .image-container {
+        height: 250px;
+    }
+    
+    .centered-image {
+        max-width: 250px;
+        max-height: 250px;
+    }
+}
