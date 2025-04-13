@@ -79,7 +79,7 @@
         "id": 1,
         "type": "text",
         "question": "What is the correct way to create a function in Python?",
-        "hint": "Use the keyword that starts with 'd'",
+        "hint": "Use the keyword that starts with 'd.'",
         "correctAnswer": "def",
         "studyLink": "https://www.w3schools.com/python/python_functions.asp"
       },
@@ -119,7 +119,7 @@
         "id": 4,
         "type": "text",
         "question": "What is the name of Python's package manager?",
-        "hint": "It's a recursive acronym",
+        "hint": "It rhymes with hip.",
         "correctAnswer": "pip",
         "studyLink": "https://www.w3schools.com/python/python_pip.asp"
       },
