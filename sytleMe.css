@@ -13,9 +13,9 @@ body {
 #leaderBoard {
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 15px;
     margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .leaderboard-item {
@@ -68,12 +68,12 @@ body {
 .option-btn {
     text-align: left;
     padding: 15px;
-    transition: all 0.3s ease;
+    transition: none;
 }
 
 .option-btn:hover {
     background-color: #e9ecef;
-    transform: translateX(5px);
+    transform: none;
 }
 
 .option-btn.selected {
@@ -84,14 +84,17 @@ body {
 
 .image-options-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 40px;
     justify-content: center;
     margin-top: 20px;
+    width: 100%;
 }
 
 .image-option {
     width: 200px;
+    flex: 0 0 auto;
     text-align: center;
 }
 
@@ -100,12 +103,15 @@ body {
     height: 150px;
     object-fit: cover;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    box-shadow: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 .option-image:hover {
     transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #4a6bdf;
 }
 
 .image-select-btn {
@@ -118,24 +124,36 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    height: 300px;
+    margin: 20px 0;
+    border: none;
+    outline: none;
 }
 
 .centered-image {
-    max-width: 50%;
-    max-height: 50%;
+    max-width: 300px;
+    max-height: 300px;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+    border-radius: 8px;
+    box-shadow: none;
+    transition: none;
+}
+
+.centered-image:hover {
+    transform: none;
 }
 
 
 .card {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: none;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: none;
 }
 
 
@@ -180,18 +198,66 @@ body {
 
 .results-container {
     text-align: center;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+
+.quiz-selection-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.quiz-logo {
+    max-width: 150px;
+    height: auto;
+    margin: 15px 0;
+}
+
+
+.name-entry-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+
+.correct-answer-container {
+    background-color: green;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.wrong-answer-container {
+    background-color: red;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+
+body.correct-answer {
+    background-color: green;
+}
+
+body.wrong-answer {
+    background-color: red;
 }
 
 
 @media (max-width: 768px) {
     .image-options-container {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
     }
-
+    
     .image-option {
-        width: 100%;
-        max-width: 300px;
+        width: 45%;
+        max-width: 200px;
+        flex: 0 0 auto;
     }
 
     .leaderboard-item {
@@ -202,5 +268,14 @@ body {
 
     .leaderboard-item:last-child {
         border-bottom: none;
+    }
+    
+    .image-container {
+        height: 250px;
+    }
+    
+    .centered-image {
+        max-width: 250px;
+        max-height: 250px;
     }
 }
