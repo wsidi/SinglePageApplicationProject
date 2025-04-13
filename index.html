@@ -73,9 +73,7 @@
 
         <div id="testArea">
             <h3 class="question-text">{{question}}</h3>
-            {{#if hint}}
-                <p class="hint-text">{{hint}}</p>
-            {{/if}}
+            
             <div class="options-container">
                 {{#each options}}
                     <button class="btn btn-outline-primary option-btn mb-2 w-100" data-option="{{this}}">{{this}}</button>
