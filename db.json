@@ -4,11 +4,15 @@
       "id": "javascript",
       "title": "JavaScript Quiz",
       "description": "Test your knowledge of JavaScript programming language."
+      "logo": "https://seeklogo.com/images/J/javascript-logo-8892AEFCAC-seeklogo.com.png"
+      "alt": "JavaScript Logo"
     },
     {
       "id": "python",
       "title": "Python Quiz",
       "description": "Test your knowledge of Python programming language."
+      "logo": "https://th.bing.com/th/id/OIP.NcoWxTfDKNryzaO2QiYrOQHaHa?rs=1&pid=ImgDetMain"
+      "alt": "Python Logo"
     }
   ],
   "questions": {
