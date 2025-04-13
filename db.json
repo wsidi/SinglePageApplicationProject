@@ -30,7 +30,8 @@
         "type": "multiple-choice",
         "question": "Which of the following is NOT a JavaScript data type?",
         "options": ["String", "Boolean", "Integer", "Object"],
-        "correctAnswer": "Integer"
+        "correctAnswer": "Integer",
+        "studyLink": "https://www.w3schools.com/js/js_datatypes.asp"
       },
       {
         "id": 3,
@@ -53,7 +54,8 @@
             "alt": "c++Logo"
           }
         ],
-        "correctAnswer": "jsLogo"
+        "correctAnswer": "jsLogo",
+        "studyLink": "https://www.w3schools.com/js/js_intro.asp"
       },
       {
         "id": 4,
@@ -68,7 +70,8 @@
         "type": "multiple-choice",
         "question": "Which event occurs when a user clicks on an HTML element?",
         "options": ["onchange", "onmouseover", "onclick", "onmouseout"],
-        "correctAnswer": "onclick"
+        "correctAnswer": "onclick",
+        "studyLink": "https://www.w3schools.com/js/js_events.asp"
       }
     ],
     "python": [
@@ -85,7 +88,8 @@
         "type": "multiple-choice",
         "question": "Which of the following is a Python data type?",
         "options": ["String", "Boolean", "Integer", "All of the above"],
-        "correctAnswer": "All of the above"
+        "correctAnswer": "All of the above",
+        "studyLink": "https://www.w3schools.com/python/python_datatypes.asp"
       },
       {
         "id": 3,
@@ -108,7 +112,8 @@
             "alt": "cSharplogo"
           }
         ],
-        "correctAnswer": "pyLogo"
+        "correctAnswer": "pyLogo",
+        "studyLink": "https://www.w3schools.com/python/python_intro.asp"
       },
       {
         "id": 4,
@@ -123,7 +128,8 @@
         "type": "multiple-choice",
         "question": "Which of the following is NOT a Python framework?",
         "options": ["Django", "Flask", "Express", "Pyramid"],
-        "correctAnswer": "Express"
+        "correctAnswer": "Express",
+        "studyLink": "https://www.w3schools.com/python/python_frameworks.asp"
       }
     ]
   }
