@@ -17,9 +17,9 @@
         "id": 1,
         "type": "text",
         "question": "What is the correct way to declare a variable in JavaScript?",
-        "hint": "Use the keyword that was introduced in ES6",
+        "hint": "Use the one that begins with the letter l.",
         "correctAnswer": "let",
-        "studyLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let"
+        "studyLink": "https://www.w3schools.com/js/js_variables.asp"
       },
       {
         "id": 2,
