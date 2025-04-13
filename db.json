@@ -61,7 +61,7 @@
         "question": "What does DOM stand for in JavaScript?",
         "hint": "It rhymes with Document Dobjet Dodel.",
         "correctAnswer": "Document Object Model",
-        "studyLink": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model"
+        "studyLink": "https://www.w3schools.com/js/js_htmldom.asp"
       },
       {
         "id": 5,
@@ -78,7 +78,7 @@
         "question": "What is the correct way to create a function in Python?",
         "hint": "Use the keyword that starts with 'd'",
         "correctAnswer": "def",
-        "studyLink": "https://docs.python.org/3/tutorial/controlflow.html#defining-functions"
+        "studyLink": "https://www.w3schools.com/python/python_functions.asp"
       },
       {
         "id": 2,
@@ -116,7 +116,7 @@
         "question": "What is the name of Python's package manager?",
         "hint": "It's a recursive acronym",
         "correctAnswer": "pip",
-        "studyLink": "https://pip.pypa.io/en/stable/"
+        "studyLink": "https://www.w3schools.com/python/python_pip.asp"
       },
       {
         "id": 5,
