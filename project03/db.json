@@ -1,0 +1,136 @@
+{
+  "quizzes": [
+    {
+      "id": "javascript",
+      "title": "JavaScript Quiz",
+      "description": "Test your knowledge of JavaScript programming language.",
+      "logo": "https://seeklogo.com/images/J/javascript-logo-8892AEFCAC-seeklogo.com.png",
+      "alt": "JavaScript Logo"
+    },
+    {
+      "id": "python",
+      "title": "Python Quiz",
+      "description": "Test your knowledge of Python programming language.",
+      "logo": "https://th.bing.com/th/id/OIP.NcoWxTfDKNryzaO2QiYrOQHaHa?rs=1&pid=ImgDetMain",
+      "alt": "Python Logo"
+    }
+  ],
+  "questions": {
+    "javascript": [
+      {
+        "id": 1,
+        "type": "text",
+        "question": "What is the output of the following JavaScript Code: console.log(2*2);?",
+        "options": ["The answer is 2", "The answer is 4", "The asnwer is 6"],
+        "correctAnswer": "The answer is 4",
+        "studyLink": "https://www.w3schools.com/js/js_arithmetic.asp"
+      },
+      {
+        "id": 2,
+        "type": "multiple-choice",
+        "question": "Which of the following is NOT a JavaScript data type?",
+        "options": ["String", "Boolean", "Integer", "Object"],
+        "correctAnswer": "Integer",
+        "studyLink": "https://www.w3schools.com/js/js_datatypes.asp"
+      },
+      {
+        "id": 3,
+        "type": "image-selection",
+        "question": "Select the correct image for the JavaScript Logo:",
+        "imageOptions": [
+          {
+            "id": "jsLogo",
+            "url": "https://seeklogo.com/images/J/javascript-logo-8892AEFCAC-seeklogo.com.png",
+            "alt": "jsLogo"
+          },
+          {
+            "id": "tsLogo",
+            "url": "https://w7.pngwing.com/pngs/1008/952/png-transparent-typescript-hd-logo.png",
+            "alt": "tsLogo"
+          },
+          {
+            "id": "c++Logo",
+            "url": "https://th.bing.com/th/id/OIP.VsbYEFeRPmyMhQZuONAWQwHaIr?rs=1&pid=ImgDetMain",
+            "alt": "c++Logo"
+          }
+        ],
+        "correctAnswer": "jsLogo",
+        "studyLink": "https://www.w3schools.com/js/js_intro.asp"
+      },
+      {
+        "id": 4,
+        "type": "multiple-choice",
+        "question": "What does DOM stand for in JavaScript?",
+        "options": ["Document Object Model", "Data Object Model", "Document Oriented Model", "Data Oriented Model"],
+        "correctAnswer": "Document Object Model",
+        "studyLink": "https://www.w3schools.com/js/js_htmldom.asp"
+      },
+      {
+        "id": 5,
+        "type": "multiple-choice",
+        "question": "Which event occurs when a user clicks on an HTML element?",
+        "options": ["onchange", "onmouseover", "onclick", "onmouseout"],
+        "correctAnswer": "onclick",
+        "studyLink": "https://www.w3schools.com/js/js_events.asp"
+      }
+    ],
+    "python": [
+      {
+        "id": 1,
+        "type": "text",
+        "question": "What is the correct way to create a function in Python?",
+        "options": ["The answer is def", "The answer is func", "The answer is define"],
+        "correctAnswer": "The answer is def",
+        "studyLink": "https://www.w3schools.com/python/python_functions.asp"
+      },
+      {
+        "id": 2,
+        "type": "multiple-choice",
+        "question": "Which of the following is a Python data type?",
+        "options": ["String", "Boolean", "Integer", "All of the above"],
+        "correctAnswer": "All of the above",
+        "studyLink": "https://www.w3schools.com/python/python_datatypes.asp"
+      },
+      {
+        "id": 3,
+        "type": "image-selection",
+        "question": "Select the image that represents the Python Logo:",
+        "imageOptions": [
+          {
+            "id": "pyLogo",
+            "url": "https://th.bing.com/th/id/OIP.NcoWxTfDKNryzaO2QiYrOQHaHa?rs=1&pid=ImgDetMain",
+            "alt": "Python logo"
+          },
+          {
+            "id": "snake",
+            "url": "https://www.thesprucepets.com/thmb/mK1BYEUqggb1d1QKi2fuKhEeyf4=/2121x1413/filters:fill(auto,1)/GettyImages-531906282-5eb4b86361a94e8ebb72e26dbba44aa4.jpg",
+            "alt": "Actual Python lol"
+          },
+          {
+            "id": "cSharplogo",
+            "url": "https://th.bing.com/th/id/OIP.vUnjMyWKG-t8IBot13xNXgHaGd?rs=1&pid=ImgDetMain",
+            "alt": "cSharplogo"
+          }
+        ],
+        "correctAnswer": "pyLogo",
+        "studyLink": "https://www.w3schools.com/python/python_intro.asp"
+      },
+      {
+        "id": 4,
+        "type": "text",
+        "question": "How do you insert comments in Python?",
+        "options": ["#This is the Comment", "//No, I'm the Comment", "***Or is this the comment***"],
+        "correctAnswer": "#This is the Comment",
+        "studyLink": "https://www.w3schools.com/python/python_comments.asp"
+      },
+      {
+        "id": 5,
+        "type": "multiple-choice",
+        "question": "Which of the following is NOT a Python framework?",
+        "options": ["Django", "Flask", "Cobra", "Pyramid"],
+        "correctAnswer": "Cobra",
+        "studyLink": "https://www.w3schools.com/python/python_frameworks.asp"
+      }
+    ]
+  }
+}
